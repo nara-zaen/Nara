@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+    <title>Kuis Mata Kuliah Agama</title>
+    <style>
+body {
+    font-family: sans-serif;
+    background-color: transparent;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+div[id^="soal"] {
+    background-color: yellow;
+    color: black;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 300px;
+    margin-right: 10px;
+    font-size: 60px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 60px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.hadiah-container {
+    text-align: center;
+    background-color: grey;
+    color: white;
+}
+
+h2 {
+    font-size: 30px;
+    color: green;
+    text-decoration: underline wavy; /* Gabungkan text-decoration dan text-decoration-style */
+}
+
+.kotak {
+    width: 700px;
+    height: 400px;
+    background-image: url('https://b.top4top.io/p_3349r0sck0.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+}
+
+    </style>
+</head>
+<body><br><br><br>
+    <center>
+        <div class="kotak"></div>
+    </center><br><br><br>
+    <div id="soal1">
+        <p>1. Apa nama bulan kesembilan dalam kalender Hijriyah?</p>
+        <input type="text" id="jawaban1">
+        <button onclick="cekJawabanText(1, 'Ramadhan', 'RAMADHAN-12345')">Cek Jawaban</button>
+        <div class="hadiah-container" id="hadiah-container1" style="display: none;">
+            <p>Selamat, jawaban Anda benar! Kode Voucher: <h2>RAMADHAN-12345</h2><h3><i>salin kode dan klaim di menu KLAIM VOUCHER</i></h3></p>
+        </div>
+    </div><br>
+    <div id="soal2">
+        <p>2. Proses perubahan air menjadi uap air disebut?</p>
+        <input type="text" id="jawaban2">
+        <button onclick="cekJawabanText(2, 'Penguapan', 'IPA-67890')">Cek Jawaban</button>
+        <div class="hadiah-container" id="hadiah-container2" style="display: none;">
+            <p>Selamat, jawaban Anda benar! Kode Voucher: <h2>IPA-67890</h2><h3><i>salin kode dan klaim di menu KLAIM VOUCHER</i></h3></p>
+        </div>
+    </div><br>
+    <div id="soal3">
+        <p>3. Berapakah hasil dari (2^3 + 4^2) / √100?</p>
+        <input type="text" id="jawaban3">
+        <button onclick="cekJawabanText(3, '2.4', 'MATEMATIKA-13579')">Cek Jawaban</button>
+        <div class="hadiah-container" id="hadiah-container3" style="display: none;">
+            <p>Selamat, jawaban Anda benar! Kode Voucher: <h2>MATEMATIKA-13579</h2><h3><i>salin kode dan klaim di menu KLAIM VOUCHER</i></h3></p>
+        </div>
+    </div><br>
+<div id="soal4">
+    <p>4. Apa yang dimaksud dengan asas "presumption of innocence" dalam hukum pidana?</p>
+    <input type="text" id="jawaban4">
+    <button onclick="cekJawabanText(4, 'Praduga tak bersalah', 'HUKUM-24680')">Cek Jawaban</button>
+    <div class="hadiah-container" id="hadiah-container4" style="display: none;">
+        <p>Selamat, jawaban Anda benar! Kode Voucher: <h2>HUKUM-24680</h2><h3><i>salin kode dan klaim di menu KLAIM VOUCHER</i></h3></p>
+    </div>
+</div><br>
+<div id="soal5">
+    <p>5. Apa kepanjangan dari APBN dalam konteks keuangan negara?</p>
+    <input type="text" id="jawaban5">
+    <button onclick="cekJawabanText(5, 'Anggaran Pendapatan dan Belanja Negara', 'STAN-11223')">Cek Jawaban</button>
+    <div class="hadiah-container" id="hadiah-container5" style="display: none;">
+        <p>Selamat, jawaban Anda benar! Kode Voucher: <h2>STAN-11223</h2><h3><i>salin kode dan klaim di menu KLAIM VOUCHER</i></h3></p>
+    </div>
+</div>
+    <br><br>
+<p style="font-size:30px; color:white;"><i> SELAMAT MENUAIKAN IBADAH PUASA, BAGI YANG MENJALANKANYA</i></p><br><br>    
+    <script>
+        function cekJawabanText(nomorSoal, jawabanBenar, kodeVoucher) {
+            let jawaban = document.getElementById("jawaban" + nomorSoal).value;
+            let jawabanNormalized = jawaban.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+            let jawabanBenarNormalized = jawabanBenar.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+
+            if (jawabanNormalized === jawabanBenarNormalized) {
+                document.getElementById("hadiah-container" + nomorSoal).style.display = "block";
+            } else {
+                alert("Jawaban salah, coba lagi!");
+            }
+        }
+
+        function salinKode(elementId) {
+            const kode = document.getElementById(elementId);
+            const teksKode = kode.innerText;
+
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(teksKode).then(function() {
+                    alert('Kode voucher berhasil disalin!');
+                }, function() {
+                    alert('Gagal menyalin kode voucher.');
+                });
+            } else {
+                const inputSementara = document.createElement('textarea');
+                inputSementara.value = teksKode;
+                document.body.appendChild(inputSementara);
+                inputSementara.select();
+
+                try {
+                    document.execCommand('copy');
+                    alert('Kode voucher berhasil disalin!');
+                } catch (err) {
+                    alert('Gagal menyalin kode voucher.');
+                }
+
+                document.body.removeChild(inputSementara);
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
