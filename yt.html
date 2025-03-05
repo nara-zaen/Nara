@@ -1,95 +1,97 @@
 <!DOCTYPE html>
 <html>
-<meta charset="utf-8">
 <head>
+    <meta charset="utf-8">
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             background-color: transparent;
             font-family: sans-serif;
             margin: 0;
+            transform-origin: top left;
+            transform: scale(1.0);
+            overflow: hidden;
         }
 
         .form-container {
-            background-color: red;
-            padding: 20px;
-            border-radius: 10px;
-            width: 100%; 
-            height: 25%;
             position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
+            height: 25%;
+            background-color: red;
             color: white;
-            left: 0; /* Posisi kiri 0 */
-            z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 999;
         }
 
-.form-row {
-    display: flex;
-    flex-direction: column; /* Mengatur arah flex menjadi kolom */
-    margin-bottom: 10px;
-    width: 100%; /* Memastikan setiap baris memenuhi lebar */
-}
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            width: 100%;
+        }
 
-.form-row label {
-    text-align: left; /* Mengatur teks label ke kiri */
-    margin-bottom: 5px; /* Menambahkan margin bawah label */
-}
+        .form-row label {
+            text-align: left;
+            margin-bottom: 5px;
+        }
 
-.form-row input[type="date"],
-.form-row input[type="email"],
-.form-row input[type="tel"],
-.form-row input[type="text"] {
-    width: calc(100% - 20px); 
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin-bottom: 10px; 
-    max-width: none; 
-    margin-right: 20px; 
-    font-size: 35px;
-}
+        .form-row input[type="date"],
+        .form-row input[type="email"],
+        .form-row input[type="tel"],
+        .form-row input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            max-width: none;
+            margin-right: 20px;
+            font-size: 35px;
+        }
 
-.form-container button {
-    background-color: red;
-    color: white;
-    padding: 10px 15px;
-    border: 2px solid white;
-    border-radius: 20px;
-    cursor: pointer;
-    position: fixed;
-    bottom: 65%;
-    right: 20px;
-    margin-left: 0;
-    width: 400px;
-    height: 100px;
-    font-size: 30px;
-    animation: blink 0.4s infinite alternate, borderBlink 2s infinite alternate; /* Menambahkan animasi kedip pada border */
-}
+        .form-container button {
+            display: block;
+            width: 100%;
+            height: 25%;
+            font-size: 3vh;
+            background-color: red;
+            color: white;
+            border: 2px solid white;
+            border-radius: 20px;
+            cursor: pointer;
+            animation: blink 0.4s infinite alternate, borderBlink 2s infinite alternate;
+            z-index: 1000;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-.form-container button:hover {
-    background-color: #45a049;
-}
+        .form-container button:hover {
+            background-color: #45a049;
+        }
 
-@keyframes blink {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0.5;
-    }
-}
+        @keyframes blink {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0.5;
+            }
+        }
 
-@keyframes borderBlink {
-    from {
-        border-color: white; /* Warna border awal */
-    }
-    to {
-        border-color: transparent; /* Warna border akhir (transparan) */
-    }
-}
-
-
+        @keyframes borderBlink {
+            from {
+                border-color: white;
+            }
+            to {
+                border-color: transparent;
+            }
+        }
 
         #previewCanvas {
             border: 5px solid black;
@@ -101,7 +103,6 @@
             transform: translateX(-50%);
         }
 
-        /* Loading overlay */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -129,24 +130,23 @@
             0% {
                 transform: rotate(0deg);
             }
-
             100% {
                 transform: rotate(360deg);
             }
         }
     </style>
 </head>
-
-<body>
+<body><br><br><br><br>
     <div class="loading-overlay">
-        <div class="loading-spinner"></div>            </div>
+        <div class="loading-spinner"></div>
+    </div>
 
     <canvas id="previewCanvas" width="600" height="900" style="display:none;"></canvas>
 
     <div class="form-container">
         <form id="telegramForm">
             <div class="form-row">
-            <h2> KLAIM YOUTUBE PREMIUM 1 BULAN</h2>
+                <h2>KLAIM YOUTUBE PREMIUM 1 BULAN</h2>
                 <label for="tanggal">Tanggal:</label>
                 <input type="date" id="tanggal" name="tanggal" required>
 
@@ -159,11 +159,9 @@
                 <label for="whatsapp">WhatsApp:</label>
                 <input type="tel" id="whatsapp" name="whatsapp" required>
             </div>
-
             <button type="button" id="previewAndSendButton">KLAIM FREE YTP1B</button>
         </form>
     </div>
-<body>
 
     <script>
         const previewCanvas = document.getElementById('previewCanvas');
@@ -172,14 +170,12 @@
         const previewDisplay = document.getElementById('previewCanvas');
         const loadingOverlay = document.querySelector('.loading-overlay');
 
-        // Memuat gambar latar belakang
         const bgImage = new Image();
         bgImage.crossOrigin = "Anonymous";
         bgImage.src = 'https://i.ibb.co.com/B5n6Gyrs/11zon-resized-3-3-2.png';
 
         bgImage.onload = function () {
             previewAndSendButton.addEventListener('click', function () {
-                // Validasi input
                 const tanggal = document.getElementById('tanggal').value;
                 const gmail = document.getElementById('gmail').value;
                 const whatsapp = document.getElementById('whatsapp').value;
@@ -190,30 +186,23 @@
                     return;
                 }
 
-                // Menggambar gambar latar belakang
                 ctx.drawImage(bgImage, 0, 0, previewCanvas.width, previewCanvas.height);
 
-    // Mengatur warna teks dan menggambar teks
-ctx.fillStyle = 'black';
-ctx.font = '24px Arial';
+                ctx.fillStyle = 'black';
+                ctx.font = '24px Arial';
 
-// Posisi teks
-const textPositions = {
-    tanggal: { x: previewCanvas.width / 5, y: 175 },
-    nama: { x: previewCanvas.width / 10, y: 750 },
-    gmail: { x: previewCanvas.width / 10, y: 770 },
-    whatsapp: { x: previewCanvas.width / 10, y: 205 } // Sesuaikan posisi y agar berada di bawah tanggal
-};
+                const textPositions = {
+                    tanggal: { x: previewCanvas.width / 5, y: 175 },
+                    nama: { x: previewCanvas.width / 10, y: 750 },
+                    gmail: { x: previewCanvas.width / 10, y: 770 },
+                    whatsapp: { x: previewCanvas.width / 10, y: 205 }
+                };
 
-// ... (kode lainnya) ...
-
-
-                // Gambar teks tanggal dengan posisi tengah
                 ctx.textAlign = 'center';
                 ctx.fillText(`${tanggal}`, textPositions.tanggal.x, textPositions.tanggal.y);
 
-                // Gambar teks nama, Gmail, dan WhatsApp dengan posisi kiri
                 ctx.textAlign = 'left';
+
                 function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
                     const words = text.split(' ');
                     let line = '';
@@ -237,18 +226,14 @@ const textPositions = {
                 const maxWidth = previewCanvas.width - 40;
                 const lineHeight = 30;
 
-                wrapText(ctx, `Selamat ya kak ${nama}🥳🥳🥳`, textPositions.nama.x, textPositions.nama.y, maxWidth, lineHeight);
+                wrapText(ctx, `Selamat ya kak ${nama}`, textPositions.nama.x, textPositions.nama.y, maxWidth, lineHeight);
                 wrapText(ctx, `Akun ${gmail} berhasil kami invite, cek PESAN GMAIL dan konfirmasi`, textPositions.gmail.x, textPositions.gmail.y, maxWidth, lineHeight);
                 wrapText(ctx, `${whatsapp}`, textPositions.whatsapp.x, textPositions.whatsapp.y, maxWidth, lineHeight);
 
-                previewDisplay.style.display = 'block';
-
-                // Tampilkan loading overlay
                 loadingOverlay.style.display = 'flex';
 
-                // Jeda 5 detik sebelum mengirim dan mengunduh
-                setTimeout(function () {
-                    // Sembunyikan loading overlay setelah 5 detik
+                setTimeout
+(function () {
                     loadingOverlay.style.display = 'none';
 
                     const formData = new FormData();
@@ -274,6 +259,12 @@ const textPositions = {
                                     link.download = 'NaraZaen.png';
                                     link.href = previewCanvas.toDataURL('image/png');
                                     link.click();
+
+                                    // --- Kode untuk mengganti tombol ---
+                                    previewAndSendButton.disabled = true; // Menonaktifkan tombol
+                                    previewAndSendButton.textContent = "Kamu berhasil klaim"; // Mengganti teks tombol
+                                    // --- Akhir kode untuk mengganti tombol ---
+
                                 } else {
                                     throw new Error('Gagal mengirim gambar.');
                                 }
@@ -293,5 +284,4 @@ const textPositions = {
         };
     </script>
 </body>
-
 </html>
