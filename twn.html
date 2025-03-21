@@ -50,7 +50,7 @@
 <body>
 
 <button id="myButton"><img src="https://i.ibb.co.com/gZS4hzVW/yellowjacket-250-1024x1024.png" alt="yellowjacket-250-1024x1024" border="0"></button>
-<div id="clickCountDisplay">SISA TAWON YANG HARUS DI TANGKAP: 100 EKOR</div>
+<div id="clickCountDisplay">Sisa: 100 EKOR</div>
 <div id="clickResult"></div>
 
 <script>
@@ -87,7 +87,7 @@
     }
 
     clickCount--;
-    countDisplay.textContent = 'SISA TAWON YANG HARUS DI TANGKAP: ' + clickCount;
+    countDisplay.textContent = 'SISA ' + clickCount;
 
     if ("vibrate" in navigator) {
       navigator.vibrate(100);
@@ -97,7 +97,7 @@
       window.location.href = 'https://link.dana.id/danakaget?c=st3npz6mv&r=cAYM8h&orderId=20250321101214422715010300166998213873213';
     }
 
-    resultDisplay.textContent = "SEMANAGAT 🤣";
+    resultDisplay.textContent = "";
     successClicks++;
 
     if (successClicks >= 60) {
