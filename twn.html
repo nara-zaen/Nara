@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+<title>Tombol Gambar Transparan Kabur dengan Hitung Mundur dan Hitungan Klik</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+    font-size: 40px;
+  }
+  #myButton {
+    position: absolute;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    padding: 0;
+  }
+
+  #myButton img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  #myButton:active img {
+    transform: translateY(2px);
+  }
+
+  #clickCountDisplay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  #clickResult {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    color: green;
+  }
+</style>
+</head>
+<body>
+
+<button id="myButton"><img src="https://i.ibb.co.com/gZS4hzVW/yellowjacket-250-1024x1024.png" alt="yellowjacket-250-1024x1024" border="0"></button>
+<div id="clickCountDisplay">SISA TAWON YANG HARUS DI TANGKAP: 100 EKOR</div>
+<div id="clickResult"></div>
+
+<script>
+  let clickCount = 100;
+  let successClicks = 0;
+  const button = document.getElementById('myButton');
+  const countDisplay = document.getElementById('clickCountDisplay');
+  const resultDisplay = document.getElementById('clickResult');
+  let musicPlayed = false;
+  let audio;
+
+  function moveButton() {
+    const maxX = window.innerWidth - button.offsetWidth;
+    const maxY = window.innerHeight - button.offsetHeight;
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    button.style.left = randomX + 'px';
+    button.style.top = randomY + 'px';
+  }
+
+  function startMoving() {
+    moveButton();
+    setTimeout(startMoving, 900);
+  }
+
+  startMoving();
+
+  button.addEventListener('click', function() {
+    if (!musicPlayed) {
+      audio = new Audio('https://k.top4top.io/m_3367yg6pc0.mp3'); // Ganti URL dengan URL musik Anda
+      audio.play();
+      musicPlayed = true;
+    }
+
+    clickCount--;
+    countDisplay.textContent = 'SISA TAWON YANG HARUS DI TANGKAP: ' + clickCount;
+
+    if ("vibrate" in navigator) {
+      navigator.vibrate(100);
+    }
+
+    if (clickCount <= 0) {
+      window.location.href = 'https://link.dana.id/danakaget?c=st3npz6mv&r=cAYM8h&orderId=20250321101214422715010300166998213873213';
+    }
+
+    resultDisplay.textContent = "SEMANAGAT 🤣";
+    successClicks++;
+
+    if (successClicks >= 60) {
+      window.location.href = 'https://link.dana.id/danakaget?c=st3npz6mv&r=cAYM8h&orderId=20250321101214422715010300166998213873213';
+    }
+  });
+</script>
+
+</body>
+</html>
